@@ -1,0 +1,27 @@
+<div class="space-y-3">
+  <!-- Year toggle -->
+  <div class="flex gap-2">
+    @for (year of years(); track year) {
+      <button
+        data-testid="year-btn"
+        (click)="yearChange.emit(year)"
+        [ngClass]="selectedYear() === year
+          ? 'bg-gray-900 text-white px-4 py-1.5 rounded-full text-sm font-semibold'
+          : 'bg-gray-100 text-gray-600 hover:bg-gray-200 px-4 py-1.5 rounded-full text-sm font-medium'"
+      >{{ year }}</button>
+    }
+  </div>
+
+  <!-- Period pills -->
+  <div class="flex gap-2 overflow-x-auto snap-x pb-1">
+    @for (period of periods(); track period.id) {
+      <button
+        data-testid="period-btn"
+        (click)="periodChange.emit(period.id)"
+        [ngClass]="selectedPeriodId() === period.id
+          ? 'bg-green-500 text-white px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap snap-start flex-shrink-0'
+          : 'bg-gray-100 text-gray-700 hover:bg-gray-200 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap snap-start flex-shrink-0'"
+      >{{ period.label }}</button>
+    }
+  </div>
+</div>
