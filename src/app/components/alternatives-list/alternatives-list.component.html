@@ -1,0 +1,24 @@
+<div class="space-y-3">
+  <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-widest">Andre alternativer</h3>
+
+  <!-- Baseline row -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-500">
+    Uten feriedager: <span class="font-semibold text-gray-700">{{ baseline().consecutiveDays }} dager fri</span>
+  </div>
+
+  <!-- Deal rows -->
+  @for (deal of deals(); track deal.vacationDaysUsed) {
+    <div
+      data-testid="deal-row"
+      class="bg-white border border-gray-200 rounded-xl px-4 py-3 flex items-center justify-between"
+    >
+      <span class="text-sm text-gray-700">
+        {{ deal.vacationDaysUsed }} dag{{ deal.vacationDaysUsed > 1 ? 'er' : '' }}
+        → {{ deal.consecutiveDays }} dager fri
+      </span>
+      <span class="text-xs font-semibold text-green-700 bg-green-50 px-2.5 py-1 rounded-full">
+        {{ deal.efficiency }}×
+      </span>
+    </div>
+  }
+</div>
