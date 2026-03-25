@@ -1,0 +1,5 @@
+{
+  "buildCommand": "npm run build -- --configuration production",
+  "outputDirectory": "dist/ferie-optimaliserer/browser",
+  "installCommand": "npm install"
+}
