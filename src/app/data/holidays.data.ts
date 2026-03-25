@@ -30,8 +30,21 @@ export const HOLIDAYS: Holiday[] = [
   { date: '2027-05-17', names: ['Grunnlovsdagen', '2. pinsedag'] },
   { date: '2027-12-25', names: ['1. juledag'] },
   { date: '2027-12-26', names: ['2. juledag'] },
-  // 2028 (needed for Nyttår 2027 window)
+  // 2028
   { date: '2028-01-01', names: ['Nyttårsdag'] },
+  { date: '2028-04-13', names: ['Skjærtorsdag'] },
+  { date: '2028-04-14', names: ['Langfredag'] },
+  { date: '2028-04-16', names: ['1. påskedag'] },
+  { date: '2028-04-17', names: ['2. påskedag'] },
+  { date: '2028-05-01', names: ['Arbeidernes dag'] },
+  { date: '2028-05-17', names: ['Grunnlovsdagen'] },
+  { date: '2028-05-25', names: ['Kristi Himmelfartsdag'] },
+  { date: '2028-06-04', names: ['1. pinsedag'] },
+  { date: '2028-06-05', names: ['2. pinsedag'] },
+  { date: '2028-12-25', names: ['1. juledag'] },
+  { date: '2028-12-26', names: ['2. juledag'] },
+  // 2029 (needed for Nyttår 2028 window)
+  { date: '2029-01-01', names: ['Nyttårsdag'] },
 ];
 
 export const PERIOD_DEFINITIONS: PeriodDefinition[] = [
@@ -41,6 +54,7 @@ export const PERIOD_DEFINITIONS: PeriodDefinition[] = [
     windows: {
       2026: { start: '2026-03-28', end: '2026-04-12' },
       2027: { start: '2027-03-22', end: '2027-04-04' },
+      2028: { start: '2028-04-10', end: '2028-04-21' },
     },
   },
   {
@@ -49,6 +63,7 @@ export const PERIOD_DEFINITIONS: PeriodDefinition[] = [
     windows: {
       2026: { start: '2026-04-27', end: '2026-05-04' },
       2027: { start: '2027-04-27', end: '2027-05-04' },
+      2028: { start: '2028-04-28', end: '2028-05-05' },
     },
   },
   {
@@ -57,6 +72,7 @@ export const PERIOD_DEFINITIONS: PeriodDefinition[] = [
     windows: {
       2026: { start: '2026-05-11', end: '2026-05-17' },
       2027: { start: '2027-05-03', end: '2027-05-09' },
+      2028: { start: '2028-05-22', end: '2028-05-28' },
     },
   },
   {
@@ -65,6 +81,7 @@ export const PERIOD_DEFINITIONS: PeriodDefinition[] = [
     windows: {
       2026: { start: '2026-05-14', end: '2026-05-21' },
       2027: { start: '2027-05-14', end: '2027-05-21' },
+      2028: { start: '2028-05-14', end: '2028-05-21' },
     },
   },
   {
@@ -73,6 +90,7 @@ export const PERIOD_DEFINITIONS: PeriodDefinition[] = [
     windows: {
       2026: { start: '2026-05-21', end: '2026-05-28' },
       2027: { start: '2027-05-13', end: '2027-05-20' },
+      2028: { start: '2028-06-01', end: '2028-06-09' },
     },
   },
   {
@@ -81,6 +99,7 @@ export const PERIOD_DEFINITIONS: PeriodDefinition[] = [
     windows: {
       2026: { start: '2026-12-23', end: '2026-12-28' },
       2027: { start: '2027-12-23', end: '2027-12-28' },
+      2028: { start: '2028-12-23', end: '2028-12-28' },
     },
   },
   {
@@ -89,8 +108,9 @@ export const PERIOD_DEFINITIONS: PeriodDefinition[] = [
     windows: {
       2026: { start: '2026-12-29', end: '2027-01-02' },
       2027: { start: '2027-12-29', end: '2028-01-02' },
+      2028: { start: '2028-12-29', end: '2029-01-02' },
     },
   },
 ];
 
-export const AVAILABLE_YEARS = [2026, 2027];
+export const AVAILABLE_YEARS = [2026, 2027, 2028];
