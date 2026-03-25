@@ -68,6 +68,14 @@ describe('VacationOptimizerService', () => {
       const days = [makeDay('white', '1'), makeDay('white', '2')];
       expect(service.longestStreak(days, new Set()).length).toBe(0);
     });
+
+    it('returns start -1 end -1 for all-white window', () => {
+      const days = [makeDay('white', '1'), makeDay('white', '2')];
+      const result = service.longestStreak(days, new Set());
+      expect(result.length).toBe(0);
+      expect(result.start).toBe(-1);
+      expect(result.end).toBe(-1);
+    });
   });
 
   // ─── generateWindowDays ────────────────────────────────────────────────────
@@ -139,6 +147,16 @@ describe('VacationOptimizerService', () => {
       expect(deal.streakStart).toBeGreaterThanOrEqual(0);
       expect(deal.streakEnd).toBeLessThan(deal.days.length);
       expect(deal.streakEnd).toBeGreaterThanOrEqual(deal.streakStart);
+    });
+  });
+
+  describe('calculate – error paths', () => {
+    it('throws for unknown periodId', () => {
+      expect(() => service.calculate('unknown', 2026)).toThrowError('Unknown period: unknown');
+    });
+
+    it('throws for unsupported year', () => {
+      expect(() => service.calculate('påske', 2099)).toThrowError('No window for påske 2099');
     });
   });
 });

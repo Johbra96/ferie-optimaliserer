@@ -5,6 +5,8 @@ import { DayEntry, DealOption, BaselinePeriod, PeriodResult, NorwegianWeekday } 
 @Injectable({ providedIn: 'root' })
 export class VacationOptimizerService {
 
+  private readonly WEEKDAYS: NorwegianWeekday[] = ['Sø', 'Ma', 'Ti', 'On', 'To', 'Fr', 'Lø'];
+
   calculate(periodId: string, year: number): PeriodResult {
     const periodDef = PERIOD_DEFINITIONS.find(p => p.id === periodId);
     if (!periodDef) throw new Error(`Unknown period: ${periodId}`);
@@ -19,7 +21,6 @@ export class VacationOptimizerService {
 
   generateWindowDays(start: string, end: string): DayEntry[] {
     const holidayMap = new Map(HOLIDAYS.map(h => [h.date, h.names]));
-    const WEEKDAYS: NorwegianWeekday[] = ['Sø', 'Ma', 'Ti', 'On', 'To', 'Fr', 'Lø'];
     const days: DayEntry[] = [];
 
     const toLocalDate = (iso: string): Date => {
@@ -41,7 +42,7 @@ export class VacationOptimizerService {
         date: iso,
         type: isHoliday || isWeekend ? 'red' : 'white',
         label: String(d.getDate()),
-        weekday: WEEKDAYS[dow],
+        weekday: this.WEEKDAYS[dow],
         ...(isHoliday ? { holidayName: names![0] } : {}),
       });
     }
@@ -49,7 +50,7 @@ export class VacationOptimizerService {
   }
 
   longestStreak(days: DayEntry[], greenIndices: Set<number>): { start: number; end: number; length: number } {
-    let best = { start: 0, end: -1, length: 0 };
+    let best = { start: -1, end: -1, length: 0 };
     let curStart = 0;
     let curLen = 0;
 
@@ -75,6 +76,8 @@ export class VacationOptimizerService {
     const workdayIndices = days.map((_, i) => i).filter(i => days[i].type === 'white');
     const bestPerCount = new Map<number, DealOption>();
 
+    // Complexity: O(C(n,k)) per k, where n = workday count per window.
+    // Current windows have ≤10 workdays, so worst-case is C(10,5)=252 iterations. Safe.
     for (let k = 1; k <= Math.min(10, workdayIndices.length); k++) {
       for (const combo of this.combinations(workdayIndices, k)) {
         const greenSet = new Set(combo);
