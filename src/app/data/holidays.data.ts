@@ -1,5 +1,9 @@
 import { Holiday, PeriodDefinition } from '../models/types';
 
+// Note: period windows may overlap — e.g. "17. mai 2027" (2027-05-14 to 2027-05-21) and
+// "Pinse 2027" (2027-05-13 to 2027-05-20) share 7 of 8 days. This is intentional — each
+// window is computed independently by the service.
+
 export const HOLIDAYS: Holiday[] = [
   // 2026
   { date: '2026-01-01', names: ['Nyttårsdag'] },

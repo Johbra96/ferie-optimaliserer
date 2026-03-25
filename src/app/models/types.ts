@@ -1,11 +1,12 @@
 export type DayType = 'red' | 'green' | 'white';
+export type NorwegianWeekday = 'Ma' | 'Ti' | 'On' | 'To' | 'Fr' | 'Lø' | 'Sø';
 
 export interface DayEntry {
-  date: string;         // ISO: "2026-04-02"
+  date: string;                // ISO: "2026-04-02"
   type: DayType;
-  label: string;        // day number: "2"
-  weekday: string;      // "Ma" | "Ti" | "On" | "To" | "Fr" | "Lø" | "Sø"
-  holidayName?: string; // e.g. "Langfredag", only for red holiday days
+  label: string;               // day number: "2"
+  weekday: NorwegianWeekday;
+  holidayName?: string;        // first name from Holiday.names, only set when type === 'red' and it's a holiday (not just a weekend)
 }
 
 export interface DealOption {
